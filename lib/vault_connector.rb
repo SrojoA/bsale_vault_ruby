@@ -1,4 +1,4 @@
-require 'vault'
+# require 'vault'
 require 'dotenv'
 
 Dotenv.load
@@ -23,9 +23,10 @@ end
 
 # Método que luego de conectarse a vault retorna los secretos generales
 def general_secrets_by_environment(environment)
-  client = vault_connector()
-  path = "#{environment}/data/general"
-  secrets = client.logical.read(path).data.to_json
+    p "VAULT CONNECTOR"
+#   client = vault_connector()
+#   path = "#{environment}/data/general"
+#   secrets = client.logical.read(path).data.to_json
 end
 
 # obtiene y retorna los secretos para un proyecto en específico.
@@ -44,8 +45,8 @@ end
 # end
 
 # Accede a secretos generales
-secrets = general_secrets_by_environment('development')
-puts secrets.to_json
+# secrets = general_secrets_by_environment('development')
+# puts secrets.to_json
 
-secretsByProject = secrets_by_project('development', 'bquery_api')
-puts secretsByProject
+# secretsByProject = secrets_by_project('development', 'bquery_api')
+# puts secretsByProject
