@@ -5,8 +5,7 @@
 
 def vault_connector
   config = {
-    address: 'http://54.227.105.83:8200', #url de vault
-    token: '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'
+    
   }
 
   client = Vault::Client.new(config)
