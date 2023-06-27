@@ -11,8 +11,10 @@ Gem::Specification.new do |spec|
     spec.require_paths = ['lib']
     spec.homepage      = 'https://github.com/SrojoA/bsale_vault_ruby'
     # spec.add_dependency 'vault'
+
+    #Esto asegurará que la versión de RubyGems requerida no tenga restricciones.
+    spec.required_rubygems_version = Gem::Requirement.new(">= 0") if spec.respond_to?(:required_rubygems_version=)
 end
 
 
-#Esto asegurará que la versión de RubyGems requerida no tenga restricciones.
-spec.required_rubygems_version = Gem::Requirement.new(">= 0") if spec.respond_to?(:required_rubygems_version=)
+
