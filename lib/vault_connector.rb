@@ -1,7 +1,7 @@
 # require 'vault'
-require 'dotenv'
+# require 'dotenv'
 
-Dotenv.load
+# Dotenv.load
 
 def vault_connector
   config = {
