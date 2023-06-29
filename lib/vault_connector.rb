@@ -1,11 +1,13 @@
-# require 'vault'
-# require 'dotenv'
+require 'vault'
+require 'dotenv'
 
-# Dotenv.load
+Dotenv.load
 
-def vault_connector
+def vault_connector(environment)
+
   config = {
-    
+    address: (environment ? 'http://54.227.105.83:8080' : 'http://vault.api.bsale.com'),
+    token: ENV['git_token']
   }
 
   client = Vault::Client.new(config)
@@ -22,15 +24,14 @@ end
 
 # Método que luego de conectarse a vault retorna los secretos generales
 def general_secrets_by_environment(environment)
-    p "VAULT CONNECTOR"
-#   client = vault_connector()
-#   path = "#{environment}/data/general"
-#   secrets = client.logical.read(path).data.to_json
+  client = vault_connector(environment)
+  path = "#{environment}/data/general"
+  secrets = client.logical.read(path).data.to_json
 end
 
 # obtiene y retorna los secretos para un proyecto en específico.
 def secrets_by_project(environment, project)
-  client = vault_connector()
+  client = vault_connector(environment)
   path = "#{environment}/data/#{project}"
   secrets = client.logical.read(path).data.to_json
 end
