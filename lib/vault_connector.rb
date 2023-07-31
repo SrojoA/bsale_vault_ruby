@@ -3,11 +3,12 @@ require 'dotenv'
 
 Dotenv.load
 
-def vault_connector(environment)
+def vault_connector(environment, git_token)
 
   config = {
     address: (environment ? 'http://54.227.105.83:8080' : 'http://vault.api.bsale.com'),
-    token: ENV['git_token']
+    token: git_token
+    # token: ENV['git_token']
   }
 
   client = Vault::Client.new(config)
@@ -16,7 +17,7 @@ def vault_connector(environment)
   else 
     puts "No se pudo conectar"
   end
-
+  puts "AA;: #{config}"
   response = client.logical.write('auth/github/login', config)
   client.token = response.auth.client_token
   client
