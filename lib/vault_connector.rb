@@ -19,7 +19,9 @@ def vault_connector(environment, git_token)
   end
   puts "AA;: #{config}"
   response = client.logical.write('auth/github/login', config)
+  p "===response: #{response}"
   client.token = response.auth.client_token
+  p "===client: #{client}"
   client
 end
 
@@ -27,7 +29,9 @@ end
 def general_secrets_by_environment(environment, git_token)
   client = vault_connector(environment, git_token)
   path = "#{environment}/data/general"
+  p "===PATH: #{path}"
   secrets = client.logical.read(path).data.to_json
+  p "===SECRETS: #{secrets.to_json}"
 end
 
 # obtiene y retorna los secretos para un proyecto en específico.
@@ -46,7 +50,7 @@ end
 # end
 
 # Accede a secretos generales
-# secrets = general_secrets_by_environment('development')
+# secrets = general_secrets_by_environment('development', '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')
 # puts secrets.to_json
 
 # secretsByProject = secrets_by_project('development', 'bquery_api')
