@@ -24,8 +24,8 @@ def vault_connector(environment, git_token)
 end
 
 # Método que luego de conectarse a vault retorna los secretos generales
-def general_secrets_by_environment(environment)
-  client = vault_connector(environment)
+def general_secrets_by_environment(environment, git_token)
+  client = vault_connector(environment, git_token)
   path = "#{environment}/data/general"
   secrets = client.logical.read(path).data.to_json
 end
